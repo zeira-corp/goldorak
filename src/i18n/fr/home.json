@@ -1,0 +1,12 @@
+{
+  "home": {
+    "form": {
+      "placeholder": "Ecrit ici ou clique sur le micro pour me dire un truc intelligent..."
+    },
+    "parrot": "Tu as dis : \"{{message}}\".",
+    "stt": {
+      "failed": "Pardon, je ne suis pas sur de comprendre. Peux-tu répeter, svp."
+    },
+    "welcome": "<h4>Salut, je suis Goldorak! 🤖</h4>Je vais répeter tout ce que tu vas dire.<br/> <span class=\"text-muted\"><i>Clique sur <i class=\"fa fa-cog\"></i> pour changer de langue.</span>"
+  }
+}

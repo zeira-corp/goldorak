@@ -14,15 +14,18 @@
         url: '/',
         templateUrl: 'app/home/home.html',
         controller: 'HomeController',
-        controllerAs: 'vm'
-          // ,
-          // resolve: {
-          //     translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
-          //         $translatePartialLoader.addPart('dashboard');
-          //         $translatePartialLoader.addPart('global');
-          //         return $translate.refresh();
-          //     }]
-          // }
+        controllerAs: 'vm',
+        resolve: {
+          translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
+            $translatePartialLoader.addPart('home');
+            $translatePartialLoader.addPart('global');
+            return $translate.refresh();
+          }],
+          locale: ['Settings', function (Settings) {
+            var settings = Settings.load();
+            return settings.stt.locale;
+          }]
+        }
       });
   }
 })();

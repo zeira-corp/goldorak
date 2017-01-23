@@ -1,0 +1,9 @@
+{
+  "settings": {
+    "stt": {
+      "title": "Speech Recognition",
+      "locale": "Locale"
+    },
+    "save": "Save"
+  }
+}

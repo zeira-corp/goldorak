@@ -1,0 +1,9 @@
+{
+  "settings": {
+    "stt": {
+      "title": "Reconnaissance vocale",
+      "locale": "Locale"
+    },
+    "save": "Sauvegarder"
+  }
+}

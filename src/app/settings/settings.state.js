@@ -14,15 +14,17 @@
         url: '/settings',
         templateUrl: 'app/settings/settings.html',
         controller: 'SettingsController',
-        controllerAs: 'vm'
-          // ,
-          // resolve: {
-          //     translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
-          //         $translatePartialLoader.addPart('dashboard');
-          //         $translatePartialLoader.addPart('global');
-          //         return $translate.refresh();
-          //     }]
-          // }
+        controllerAs: 'vm',
+        resolve: {
+          translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
+            $translatePartialLoader.addPart('settings');
+            $translatePartialLoader.addPart('global');
+            return $translate.refresh();
+          }],
+          locales: ['LocaleService', function (LocaleService) {
+            return LocaleService.getAll();
+          }]
+        }
       });
   }
 })();
