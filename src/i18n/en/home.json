@@ -6,6 +6,7 @@
     "stt": {
       "failed": "Sorry, I don't understand. Can you repeat, please."
     },
+    "hotkey": "Start/Stop voice recording",
     "parrot": "You said: \"{{message}}\".",
     "welcome": "<h4>Hi, I'm Goldorak! 🤖</h4>I will repeat everything you say. Give it a try.<br/> <span class=\"text-muted\"><i>Click on the <i class=\"fa fa-cog\"></i> to change the language.</span>"
   }

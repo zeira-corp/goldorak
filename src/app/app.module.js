@@ -12,6 +12,7 @@
       'luegg.directives',
       'ngCookies',
       'tmh.dynamicLocale',
-      'pascalprecht.translate'
+      'pascalprecht.translate',
+      'cfp.hotkeys'
     ]);
 })();

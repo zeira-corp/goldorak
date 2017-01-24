@@ -5,16 +5,21 @@
     .module('app')
     .controller('HomeController', HomeController);
 
-  HomeController.$inject = ['$scope', '$log', '$translate', 'BingSpeech', 'Microphone', 'locale'];
+  HomeController.$inject = ['$scope', '$log', '$translate', 'hotkeys', 'BingSpeech', 'Microphone', 'locale'];
 
-  function HomeController($scope, $log, $translate, BingSpeech, Microphone, locale) {
+  function HomeController($scope, $log, $translate, hotkeys, BingSpeech, Microphone, locale) {
     var vm = this;
 
-    vm.startRecording = startRecording;
-    vm.stopRecording = stopRecording;
+    vm.toggleRecording = toggleRecording;
     vm.isRecording = isRecording;
     vm.submit = submit;
     vm.messages = [];
+
+    hotkeys.add({
+      combo: 'ctrl+space',
+      description: $translate.instant('home.hotkey'),
+      callback: toggleRecording
+    });
 
     vm.messages.push({
       user: "goldorak",
@@ -42,6 +47,17 @@
           message: text
         }
       });
+      if (text === "Goldorak") {
+        vm.messages.push({
+          user: "goldorak",
+          timestamp: new Date().getTime(),
+          content: "Go!"
+        });
+      }
+    }
+
+    function toggleRecording() {
+      (!isRecording()) ? startRecording() : stopRecording();
     }
 
     function startRecording() {

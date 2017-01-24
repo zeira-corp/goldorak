@@ -21,7 +21,7 @@
 				<form ng-submit="vm.submit()">
 					<div class="input-group">
 						<span class="input-group-btn">
-					<button type="button" ng-click="vm.isRecording() ? vm.stopRecording() : vm.startRecording()" class="btn btn-lg" ng-class="vm.isRecording() ? 'btn-danger' : 'btn-success'">
+					<button type="button" ng-click="toggleRecording()" class="btn btn-lg" ng-class="vm.isRecording() ? 'btn-danger' : 'btn-success'">
 						<i class="fa fa-2x" ng-class="vm.isRecording() ? 'fa-microphone-slash' : 'fa-microphone'" aria-hidden="true"></i>
 			</button>
 				</span>
