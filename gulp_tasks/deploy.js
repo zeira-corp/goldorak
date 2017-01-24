@@ -6,6 +6,6 @@ const conf = require('../conf/gulp.conf');
 gulp.task('deploy', deploy);
 
 function deploy() {
-  return gulp.src('./dist/**/*')
+  return gulp.src(conf.path.dist('**/*'))
     .pipe(ghPages());
 }
