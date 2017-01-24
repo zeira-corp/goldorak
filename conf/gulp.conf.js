@@ -21,7 +21,8 @@ exports.paths = {
   dist: 'dist',
   tmp: '.tmp',
   e2e: 'e2e',
-  tasks: 'gulp_tasks'
+  tasks: 'gulp_tasks',
+  bower: 'bower_components'
 };
 
 /**
@@ -61,3 +62,8 @@ exports.wiredep = {
   exclude: [/\/bootstrap\.js$/],
   directory: 'bower_components'
 };
+
+/**
+ * Should be replaced by a filtering on i18n dir
+ */
+exports.languages = ['en', 'fr'];
