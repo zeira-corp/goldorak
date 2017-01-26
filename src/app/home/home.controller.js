@@ -5,9 +5,9 @@
     .module('app')
     .controller('HomeController', HomeController);
 
-  HomeController.$inject = ['$scope', '$log', '$translate', 'hotkeys', 'BingSpeech', 'Microphone', 'locale'];
+  HomeController.$inject = ['$scope', '$log', '$translate', 'hotkeys', 'BingSpeech', 'Microphone', 'locale', 'Luis'];
 
-  function HomeController($scope, $log, $translate, hotkeys, BingSpeech, Microphone, locale) {
+  function HomeController($scope, $log, $translate, hotkeys, BingSpeech, Microphone, locale, Luis) {
     var vm = this;
 
     vm.toggleRecording = toggleRecording;
@@ -39,13 +39,13 @@
         user: "me",
         timestamp: new Date().getTime(),
         content: text
-      }, {
-        user: "goldorak",
-        timestamp: new Date().getTime(),
-        content: 'home.parrot',
-        values: {
-          message: text
-        }
+      });
+      Luis.predict(text).then(function (response) {
+        vm.messages.push({
+          user: "goldorak",
+          timestamp: new Date().getTime(),
+          content: response
+        });
       });
       if (text === "Goldorak") {
         vm.messages.push({
