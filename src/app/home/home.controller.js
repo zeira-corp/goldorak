@@ -50,7 +50,7 @@
         vm.messages.push({
           user: "goldorak",
           timestamp: new Date().getTime(),
-          content: intent
+          content: intent.intent
         });
       }).catch(function (error) {
         vm.messages.push({

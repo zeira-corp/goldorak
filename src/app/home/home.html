@@ -1,10 +1,10 @@
 <div class="fill">
 	<div class="container content mt-3" scroll-glue>
 		<div class="row mb-2" ng-repeat="message in vm.messages">
-			<div class="col-sm-1">
-				<img class="rounded" ng-src="content/images/{{message.user}}.png">
+			<div class="col-3 col-sm-1">
+				<img class="rounded img-fluid" ng-src="content/images/{{message.user}}.png">
 			</div>
-			<div class="col-sm-11">
+			<div class="col">
 				<div class="card" ng-class="message.user == 'me' ? 'card-outline-warning' : 'card-outline-info'">
 					<div class="card-block">
 						<span class="card-title"><strong class="capitalize">{{message.user}}</strong></span>
@@ -15,9 +15,10 @@
 			</div>
 		</div>
 	</div>
-	<div class="container">
+
+	<div class="container hidden-sm-down">
 		<div class="row">
-			<div class="col-sm-12">
+			<div class="col">
 				<form ng-submit="vm.submit()">
 					<div class="input-group">
 						<span class="input-group-btn">
@@ -31,4 +32,23 @@
 			</div>
 		</div>
 	</div>
+
+	<div class="hidden-sm-up fixed-bottom">
+		<div class="row">
+			<div class="col">
+				<form ng-submit="vm.submit()">
+					<div class="input-group">
+						<span class="input-group-btn">
+					<button type="button" ng-click="vm.toggleRecording()" class="btn no-rounded" ng-class="vm.isRecording() ? 'btn-danger' : 'btn-success'">
+						<i class="fa fa-2x" ng-class="vm.isRecording() ? 'fa-microphone-slash' : 'fa-microphone'" aria-hidden="true"></i>
+			</button>
+				</span>
+						<input type="text" class="form-control no-rounded" ng-model="vm.text" placeholder="{{ 'home.form.placeholder' | translate }}" />
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+
 </div>
