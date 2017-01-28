@@ -5,84 +5,85 @@
     .module('app')
     .controller('HomeController', HomeController);
 
-  HomeController.$inject = ['$scope', '$log', '$translate', 'hotkeys', 'BingSpeech', 'Microphone', 'locale', 'Luis'];
+  HomeController.$inject = ['$rootScope', '$scope', '$log', '$translate', 'hotkeys', 'Bot'];
 
-  function HomeController($scope, $log, $translate, hotkeys, BingSpeech, Microphone, locale, Luis) {
+  function HomeController($rootScope, $scope, $log, $translate, hotkeys, Bot) {
     var vm = this;
 
     vm.toggleRecording = toggleRecording;
-    vm.isRecording = isRecording;
+    vm.isRecording = Bot.isListening;
     vm.submit = submit;
     vm.messages = [];
 
     hotkeys.add({
       combo: 'ctrl+space',
       description: $translate.instant('home.hotkey'),
-      callback: toggleRecording
+      callback: vm.toggleRecording
     });
 
-    vm.messages.push({
-      user: "goldorak",
-      timestamp: new Date().getTime(),
-      content: 'home.welcome'
-    });
+    welcomeMessage();
+
+    function welcomeMessage() {
+      vm.messages.push({
+        user: "goldorak",
+        timestamp: new Date().getTime(),
+        content: 'home.welcome'
+      });
+    }
+
+    function toggleRecording() {
+      if (Bot.isListening()) {
+        Bot.stopListening().then(process).catch(handleError);
+      } else {
+        Bot.startListening();
+      }
+    }
+
+    function process(request) {
+      vm.messages.push({
+        user: "me",
+        timestamp: new Date().getTime(),
+        content: request
+      });
+
+      Bot.getIntent(request).then(function (intent) {
+        vm.messages.push({
+          user: "goldorak",
+          timestamp: new Date().getTime(),
+          content: intent
+        });
+      }).catch(function (error) {
+        vm.messages.push({
+          user: "goldorak",
+          timestamp: new Date().getTime(),
+          content: error
+        });
+      });
+    }
+
+    function handleError() {
+      vm.messages.push({
+        user: "goldorak",
+        timestamp: new Date().getTime(),
+        content: 'home.stt.failed'
+      });
+    }
 
     function submit() {
       if (vm.text) {
         process(vm.text);
-        vm.text = "";
       }
+      vm.text = "";
     }
 
-    function process(text) {
-      vm.messages.push({
-        user: "me",
-        timestamp: new Date().getTime(),
-        content: text
-      });
-      Luis.predict(text).then(function (response) {
-        vm.messages.push({
-          user: "goldorak",
-          timestamp: new Date().getTime(),
-          content: response
-        });
-      });
-      if (text === "Goldorak") {
-        vm.messages.push({
-          user: "goldorak",
-          timestamp: new Date().getTime(),
-          content: "Go!"
-        });
-      }
-    }
-
-    function toggleRecording() {
-      (!isRecording()) ? startRecording() : stopRecording();
-    }
-
-    function startRecording() {
-      Microphone.startRecording();
-    }
-
-    function isRecording() {
-      return Microphone.isRecording();
-    }
-
-    function stopRecording() {
-      Microphone.stopRecording()
-        .then(function (audio) {
-          BingSpeech
-            .recognize(audio, locale)
-            .then(process)
-            .catch(function (error) {
-              $log.error(error);
-              vm.messages.push({
-                user: "goldorak",
-                timestamp: new Date().getTime(),
-                content: 'home.stt.failed'
-              });
-            });
-        });
-    }
+    // var botListened = $rootScope.$on('bot::listened', function (event, data) {
+    //   process(data.text);
+    // });
+    //
+    // $rootScope.$on('$destroy', function () {
+    //   if (angular.isDefined(botListened) && botListened !== null) {
+    //     botListened();
+    //   }
+    // });
   }
 })();

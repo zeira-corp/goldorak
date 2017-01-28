@@ -14,5 +14,11 @@
       'tmh.dynamicLocale',
       'pascalprecht.translate',
       'cfp.hotkeys'
-    ]);
+    ]).run(run);
+
+  run.$inject = ['settingssHandler'];
+
+  function run(settingssHandler) {
+    settingssHandler.initialize();
+  }
 })();

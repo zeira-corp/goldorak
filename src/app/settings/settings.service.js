@@ -4,9 +4,9 @@
     .module('app')
     .factory('Settings', Settings);
 
-  Settings.$inject = ['$log', '$q', '$localStorage', 'LanguageService'];
+  Settings.$inject = ['$localStorage', '$log', '$rootScope'];
 
-  function Settings($log, $q, $localStorage, LanguageService) {
+  function Settings($localStorage, $log, $rootScope) {
     var service = {
       save: save,
       load: load
@@ -25,8 +25,8 @@
 
     function save(settings) {
       settings = Object.assign({}, defaults, settings);
-      LanguageService.changeLanguage(settings.stt.locale);
       $localStorage.settings = settings;
+      $rootScope.$emit('settings:saved', settings);
     }
 
     function load() {

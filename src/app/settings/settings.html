@@ -4,14 +4,19 @@
     <div class="form-group row">
       <label for="locale" class="col-sm-2 col-form-label" translate="settings.stt.locale">Locale</label>
       <div class="col-sm-10">
-        <input type="text"
-         class="form-control"
-          id="locale"
-           placeholder="en-US,fr-FR,.."
-           ng-model="vm.settings.stt.locale"
-           uib-typeahead="locale for locale in vm.locales | filter:$viewValue | limitTo:3">
+        <input type="text" class="form-control" id="locale" placeholder="en-US,fr-FR,.." ng-model="vm.settings.stt.locale" uib-typeahead="locale for locale in vm.locales | filter:$viewValue | limitTo:3">
       </div>
     </div>
+
+    <h4 translate="settings.nlu.title">Natural Language Understanding</h4>
+    <div class="form-group row">
+      <label for="application" class="col-sm-2 col-form-label" translate="settings.nlu.application">Application</label>
+      <div class="col-sm-10">
+        <select class="form-control" ng-model="vm.settings.nlu.application" ng-options="it.name for it in vm.luisApplciations track by it.appId"></select>
+      </div>
+    </div>
+
+
     <div class="form-group row">
       <div class="offset-sm-2 col-sm-10 text-right">
         <button type="submit" class="btn btn-primary" ng-click="vm.save()"><i class="fa fa-floppy-o" aria-hidden="true"></i>&nbsp;<span translate="settings.save">Save</span></button>

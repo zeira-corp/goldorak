@@ -1,10 +1,10 @@
 <div class="fill">
 	<div class="container content mt-3" scroll-glue>
 		<div class="row mb-2" ng-repeat="message in vm.messages">
-			<div class="col-1">
+			<div class="col-sm-1">
 				<img class="rounded" ng-src="content/images/{{message.user}}.png">
 			</div>
-			<div class="col-11">
+			<div class="col-sm-11">
 				<div class="card" ng-class="message.user == 'me' ? 'card-outline-warning' : 'card-outline-info'">
 					<div class="card-block">
 						<span class="card-title"><strong class="capitalize">{{message.user}}</strong></span>
@@ -17,7 +17,7 @@
 	</div>
 	<div class="container">
 		<div class="row">
-			<div class="col-12">
+			<div class="col-sm-12">
 				<form ng-submit="vm.submit()">
 					<div class="input-group">
 						<span class="input-group-btn">

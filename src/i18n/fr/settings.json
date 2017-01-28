@@ -4,6 +4,10 @@
       "title": "Reconnaissance vocale",
       "locale": "Locale"
     },
+    "nlu": {
+      "title": "Natural Language Understanding",
+      "application": "Application"
+    },
     "save": "Sauvegarder"
   }
 }

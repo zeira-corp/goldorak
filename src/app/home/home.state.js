@@ -24,6 +24,10 @@
           locale: ['Settings', function (Settings) {
             var settings = Settings.load();
             return settings.stt.locale;
+          }],
+          luisApplication: ['Settings', function (Settings) {
+            var settings = Settings.load();
+            return settings.nlu.application;
           }]
         }
       });

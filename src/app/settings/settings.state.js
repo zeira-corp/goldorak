@@ -23,6 +23,9 @@
           }],
           locales: ['LocaleService', function (LocaleService) {
             return LocaleService.getAll();
+          }],
+          luisApplications: ['LuisApplicationService', function (LuisApplicationService) {
+            return LuisApplicationService.getAll();
           }]
         }
       });
