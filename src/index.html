@@ -24,33 +24,23 @@
 
 
 <body ng-app="app">
-  <!-- <nav class="navbar navbar-light bg-faded">
-    <a class="navbar-brand" href="#">
-      <img src="content/images/hubot.svg" width="30" height="30" class="d-inline-block align-top" alt=""> I'm listening...
-    </a>
-      <span class="navbar-text">
-      <a ui-sref="settings"><i class="fa fa-cog" aria-hidden="true"></i></a>
-    </span>
-  </nav> -->
   <div class="wrapper">
-  <nav class="navbar navbar-toggleable-md navbar-light bg-faded border-bottom">
-    <div class="container">
-      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-      <a class="navbar-brand" ui-sref="home">
-        <img src="content/images/hubot.svg" width="30" height="30" class="d-inline-block align-top" alt="">Goldorak, Go!
-      </a>
-      <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarText">
-        <ul class="navbar-nav">
-          <li class="nav-item active">
-            <a class="nav-link btn" ui-sref="settings"><i class="fa fa-cog fa-2x" aria-hidden="true"></i></a>
-          </li>
-        </ul>
+    <nav class="navbar navbar-light bg-faded border-bottom">
+      <div class="row">
+        <div class="col ml-1">
+          <a class="navbar-brand ml-1" ui-sref="home">
+            <h4><img src="content/images/hubot.svg" width="30" height="30" class="d-inline-block align-top" alt="">Goldorak, Go!</h4>
+          </a>
+        </div>
+        <div class="col mr-1 text-right">
+          <a class="btn" ui-sref="settings">
+            <i class="fa fa-cog fa-2x"></i>
+          </a>
+        </div>
       </div>
-    </div>
-  </nav>
-  <div ui-view class="fill"></div>
+    </nav>
+
+    <div ui-view class="fill"></div>
   </div>
 </body>
 
