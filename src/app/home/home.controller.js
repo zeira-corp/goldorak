@@ -46,11 +46,11 @@
         content: request
       });
 
-      Bot.getIntent(request).then(function (intent) {
+      Bot.converse(request).then(function (response) {
         vm.messages.push({
           user: "goldorak",
           timestamp: new Date().getTime(),
-          content: intent.intent
+          content: response
         });
       }).catch(function (error) {
         vm.messages.push({
