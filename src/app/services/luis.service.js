@@ -9,27 +9,28 @@
   function LuisProvider() {
     this.$get = Luis;
 
-    var $luisApiUrl = 'https://westus.api.cognitive.microsoft.com/luis/v1.0/prog/apps/';
-    var $defaultApplication;
-
+    var $luisApiUrl = 'https://westus.api.cognitive.microsoft.com/luis/v1.0/prog/apps';
     this.setLuisApiUrl = function (luisApiUrl) {
       $luisApiUrl = luisApiUrl;
-    };
-
-    this.setDefaultApplication = function (defaultApplication) {
-      $defaultApplication = defaultApplication;
     };
 
     Luis.$inject = ['$http', '$log', '$rootScope'];
 
     function Luis($http, $log, $rootScope) {
       var service = {
+        useSubscriptionKey: useSubscriptionKey,
         useApplication: useApplication,
         getApplication: getApplication,
+        getApplications: getApplications,
         predict: predict
       };
 
+      var $subscriptionKey;
       var $application;
+
+      function useSubscriptionKey(subscriptionKey) {
+        $subscriptionKey = subscriptionKey;
+      }
 
       function useApplication(application) {
         $application = application;
@@ -39,25 +40,48 @@
         return $application;
       }
 
-      if (!$application && $defaultApplication) {
-        useApplication($defaultApplication);
-      } else {
-        throw new Error("You must define at least one Luis application");
+      function getApplications() {
+        // if (!$subscriptionKey) {
+        //   throw new Error('You must set the subscriptionKey first');
+        // }
+        // return $http.get($luisApiUrl, {
+        //   headers: {
+        //     'Ocp-Apim-Subscription-Key': $subscriptionKey
+        //   }
+        // }).then(function (response) {
+        //   var data = response.data;
+        //   return data.map(function (application) {
+        //     return {
+        //       name: application.Name,
+        //       appId: application.ID
+        //     };
+        //   });
+        // });
+        return [{
+          name: "Conference",
+          appId: "496aaf6a-10e6-48fa-8b17-15658ddabde2"
+        }];
       }
 
       function predict(utterance) {
+        if (!$subscriptionKey) {
+          throw new Error('You must set the subscriptionKey first');
+        }
+        if (!$application) {
+          throw new Error("You must define at least one Luis application");
+        }
         $rootScope.$emit('luis:predict', {
           application: $application,
           utterance: utterance
         });
-        var predictEndpoint = $luisApiUrl + $application.appId + "/predict";
+        var predictEndpoint = $luisApiUrl + "/" + $application.appId + "/predict";
         var data = [];
         data.push(utterance);
         return $http.post(predictEndpoint, data, {
           headers: {
-            'Ocp-Apim-Subscription-Key': $application.subscriptionKey
+            'Ocp-Apim-Subscription-Key': $subscriptionKey
           }
-        }).then(function (response) {
+        }).then(function(response) {
           return getIntent(getJsonData(response));
         });
       }

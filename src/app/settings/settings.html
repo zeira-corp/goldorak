@@ -1,18 +1,55 @@
 <div class="container mt-3">
   <form>
-    <h4 translate="settings.stt.title">Speech Recognition</h4>
+    <h4 class="text-primary" translate="settings.general.title">General</h4>
+    <div class="form-group row">
+      <label for="language" class="col-sm-2 col-form-label" translate="settings.general.language">Language</label>
+      <div class="col-sm-10">
+        <select class="form-control" ng-model="vm.settings.general.language" ng-options="it for it in vm.languages track by it"></select>
+      </div>
+    </div>
+    <h4 class="text-primary" translate="settings.stt.title">Speach To Text</h4>
     <div class="form-group row">
       <label for="locale" class="col-sm-2 col-form-label" translate="settings.stt.locale">Locale</label>
       <div class="col-sm-10">
         <input type="text" class="form-control" id="locale" placeholder="en-US,fr-FR,.." ng-model="vm.settings.stt.locale" uib-typeahead="locale for locale in vm.locales | filter:$viewValue | limitTo:3">
       </div>
     </div>
-
-    <h4 translate="settings.nlu.title">Natural Language Understanding</h4>
     <div class="form-group row">
-      <label for="application" class="col-sm-2 col-form-label" translate="settings.nlu.application">Application</label>
+      <label for="sst_engine" class="col-sm-2 col-form-label" translate="settings.stt.engine">Engine</label>
       <div class="col-sm-10">
-        <select class="form-control" ng-model="vm.settings.nlu.application" ng-options="it.name for it in vm.luisApplciations track by it.appId"></select>
+        <select class="form-control" ng-model="vm.settings.stt" ng-options="it.name for it in vm.sttEngines track by it.name"></select>
+      </div>
+    </div>
+    <h5>Microsoft BingSpeech</h5>
+    <fieldset disabled>
+      <div class="form-group row">
+        <label for="BingSpeech_subscription_key" class="col-sm-2 col-form-label" translate="settings.BingSpeech.subscriptionKey">Subscription Key</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="BingSpeech_subscription_key" placeholder="The BingSpeech Subscription Key to use" ng-model="vm.settings.BingSpeech.subscriptionKey">
+        </div>
+      </div>
+    </fieldset>
+
+    <h4 class="text-primary" translate="settings.nlp.title">Natural Language Processor</h4>
+    <div class="form-group row">
+      <label for="nlp_engine" class="col-sm-2 col-form-label" translate="settings.nlp.engine">Engine</label>
+      <div class="col-sm-10">
+        <select class="form-control" ng-model="vm.settings.nlp" ng-options="it.name for it in vm.nlpEngines track by it.name"></select>
+      </div>
+    </div>
+    <h5>Microsoft Luis</h5>
+    <fieldset disabled>
+      <div class="form-group row">
+        <label for="luis_subscription_key" class="col-sm-2 col-form-label" translate="settings.Luis.subscriptionKey">Subscription Key</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="luis_subscription_key" placeholder="The Luis Subscription Key to use" ng-model="vm.settings.Luis.subscriptionKey">
+        </div>
+      </div>
+    </fieldset>
+    <div class="form-group row">
+      <label for="application" class="col-sm-2 col-form-label" translate="settings.Luis.application">Application</label>
+      <div class="col-sm-10">
+        <select class="form-control" ng-model="vm.settings.Luis.application" ng-options="it.name for it in vm.luisApplciations track by it.appId"></select>
       </div>
     </div>
 

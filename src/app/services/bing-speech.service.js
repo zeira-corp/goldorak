@@ -9,22 +9,32 @@
   function BingSpeechProvider() {
     this.$get = BingSpeech;
 
-    var $subscriptionKey;
+    var $defaultSubscriptionKey;
     var $BingSpeechApiUrl = 'https://speech.platform.bing.com';
     var $issueTokenUrl = 'https://api.cognitive.microsoft.com/sts/v1.0/issueToken';
 
-    this.setSubscriptionKey = function (subscriptionKey) {
-      $subscriptionKey = subscriptionKey;
+    this.useDefaultSubscriptionKey = function (defaultSubscriptionKey) {
+      $defaultSubscriptionKey = defaultSubscriptionKey;
     };
 
     BingSpeech.$inject = ['$log', '$http', '$localStorage', '$q', 'uuid4'];
 
     function BingSpeech($log, $http, $localStorage, $q, uuid4) {
       var service = {
-        recognize: recognize
+        recognize: recognize,
+        useSubscriptionKey: useSubscriptionKey
       };
 
+      var $subscriptionKey;
+
+      function useSubscriptionKey(subscriptionKey) {
+        $subscriptionKey = subscriptionKey;
+      }
+
       function recognize(audio, locale) {
+        if (!$subscriptionKey) {
+          throw new Error('You must set the subscriptionKey first');
+        }
         $log.debug("Recognizing audio with locale: " + locale);
         return getToken($subscriptionKey).then(function (token) {
           return $http.post($BingSpeechApiUrl + '/recognize', audio, {

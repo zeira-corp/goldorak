@@ -1,12 +1,24 @@
 {
   "settings": {
+    "general": {
+      "title": "General",
+      "language": "Langue"
+    },
     "stt": {
-      "title": "Reconnaissance vocale",
+      "title": "Reconnaisse vocale",
+      "engine": "Moteur",
       "locale": "Locale"
     },
-    "nlu": {
-      "title": "Natural Language Understanding",
-      "application": "Application"
+    "nlp": {
+      "title": "Analyse de texte naturel",
+      "engine": "Moteur"
+    },
+    "BingSpeech": {
+      "subscriptionKey": "Clé de souscription"
+    },
+    "Luis": {
+      "application": "Application",
+      "subscriptionKey": "Clé de souscription"
     },
     "save": "Sauvegarder"
   }

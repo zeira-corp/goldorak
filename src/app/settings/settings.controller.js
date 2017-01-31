@@ -9,6 +9,15 @@
 
   function SettingsController($log, $state, Settings, locales, luisApplications) {
     var vm = this;
+    vm.languages = ['en', 'fr'];
+    vm.sttEngines = [{
+      name: 'Microsoft BingSpeech',
+      service: 'BingSpeech'
+    }];
+    vm.nlpEngines = [{
+      name: 'Microsoft Luis',
+      service: 'Luis'
+    }];
     vm.save = save;
     vm.settings = Settings.load();
     vm.locales = locales;

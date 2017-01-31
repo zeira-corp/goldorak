@@ -5,18 +5,18 @@
     .module('app')
     .factory('settingssHandler', settingssHandler);
 
-  settingssHandler.$inject = ['$rootScope', 'Hears', 'LanguageService', 'Luis'];
+  settingssHandler.$inject = ['$rootScope', 'Settings', 'Hears', 'Brain', 'LanguageService', 'Luis', 'BingSpeech'];
 
-  function settingssHandler($rootScope, Hears, LanguageService, Luis) {
+  function settingssHandler($rootScope, Settings, Hears, Brain, LanguageService, Luis, BingSpeech) {
     return {
       initialize: initialize
     };
 
     function initialize() {
+      update(Settings.load());
+
       var settingsSavedSuccess = $rootScope.$on('settings:saved', function (event, settings) {
-        Hears.useLocale(settings.stt.locale);
-        LanguageService.changeLanguage(settings.stt.locale);
-        Luis.useApplication(settings.nlu.application);
+        update(settings);
       });
 
       $rootScope.$on('$destroy', function () {
@@ -24,6 +24,16 @@
           settingsSavedSuccess();
         }
       });
+    }
+
+    function update(settings) {
+      LanguageService.changeLanguage(settings.general.language);
+      Hears.useLocale(settings.stt.locale);
+      Hears.useSpeechToText(settings.stt.service);
+      Brain.useNaturalLanguageProcessor(settings.nlp.service);
+      Luis.useSubscriptionKey(settings.Luis.subscriptionKey);
+      Luis.useApplication(settings.Luis.application);
+      BingSpeech.useSubscriptionKey(settings.BingSpeech.subscriptionKey);
     }
   }
 })();

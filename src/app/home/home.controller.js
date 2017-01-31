@@ -61,7 +61,8 @@
       });
     }
 
-    function handleError() {
+    function handleError(error) {
+      $log.error(error);
       vm.messages.push({
         user: "goldorak",
         timestamp: new Date().getTime(),

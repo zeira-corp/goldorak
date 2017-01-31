@@ -1,83 +1,74 @@
-(function () {
+(function() {
   'use strict';
   angular
     .module('app')
-    .provider('Hears', HearsProvider);
+    .factory('Hears', Hears);
 
-  HearsProvider.$inject = [];
+  Hears.$inject = ['$injector', '$log', '$rootScope', 'Microphone'];
 
-  function HearsProvider() {
-    this.$get = Hears;
-    var $sst;
-    var $defaultLocale = 'en-US';
+  function Hears($injector, $log, $rootScope, Microphone) {
 
-    this.setSpeechToText = function (sst) {
-      $sst = sst;
+    var service = {
+      startListening: startListening,
+      isListening: Microphone.isRecording,
+      stopListening: stopListening,
+      locale: locale,
+      useLocale: useLocale,
+      useSpeechToText: useSpeechToText
     };
 
-    this.setDefaultLocale = function (defaultLocale) {
-      $defaultLocale = defaultLocale;
-    };
+    var $locale;
+    var $stt;
 
-    Hears.$inject = ['$injector', '$log', '$rootScope', 'Microphone'];
+    function useLocale(locale) {
+      $locale = locale;
+      $log.debug('Speech To Text Locale: ' + $locale);
+    }
 
-    function Hears($injector, $log, $rootScope, Microphone) {
-      var service = {
-        startListening: startListening,
-        isListening: Microphone.isRecording,
-        stopListening: stopListening,
-        locale: locale,
-        useLocale: useLocale
-      };
+    function useSpeechToText(stt) {
+      $stt = stt;
+      $log.debug('Speech To Text Engine: ' + $stt);
+    }
 
-      var $locale;
-      var SpeechToText;
+    function locale() {
+      return $locale;
+    }
 
-      function useLocale(locale) {
-        $locale = locale;
+    function getSTTInstance() {
+      if ($stt) {
+        return $injector.get($stt);
       }
+      throw new Error('You must define a SpeechToText engine');
+    }
 
-      function locale() {
-        return $locale;
-      }
+    function startListening() {
+      Microphone.startRecording();
+      $rootScope.$emit('hears:onStartListening', {
+        sst: $stt,
+        locale: $locale
+      });
+    }
 
-      useLocale($defaultLocale);
-
-      if ($sst) {
-        $log.debug('Speech To Text Engine: ' + $sst);
-        SpeechToText = $injector.get($sst);
-      } else {
-        throw new Error('You must define a SpeechToText engine');
-      }
-
-      function startListening() {
-        Microphone.startRecording();
-        $rootScope.$emit('hears:onStartListening', {
-          sst: $sst,
-          locale: $locale
-        });
-      }
-
-      function stopListening() {
-        $rootScope.$emit('hears:onStopListening', {
-          sst: $sst,
-          locale: $locale
-        });
-        return Microphone
+    function stopListening() {
+      $rootScope.$emit('hears:onStopListening', {
+        sst: $stt,
+        locale: $locale
+      });
+      return Microphone
         .stopRecording()
         .then(recognize);
-      }
-
-      function recognize(audio) {
-        $rootScope.$emit('hears:onRecognize', {
-          sst: $sst,
-          locale: $locale,
-          audio: audio
-        });
-        return SpeechToText.recognize(audio, $locale);
-      }
-
-      return service;
     }
+
+    function recognize(audio) {
+      var SpeechToText = getSTTInstance();
+      $rootScope.$emit('hears:onRecognize', {
+        sst: $stt,
+        locale: $locale,
+        audio: audio
+      });
+      return SpeechToText.recognize(audio, $locale);
+    }
+
+    return service;
   }
 })();

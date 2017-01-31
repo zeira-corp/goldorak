@@ -1,22 +1,18 @@
-(function () {
+(function() {
   'use strict';
   angular
     .module('app')
     .factory('Settings', Settings);
 
-  Settings.$inject = ['$localStorage', '$log', '$rootScope'];
+  Settings.$inject = ['$localStorage', '$log', '$rootScope', 'DEFAULTS'];
 
-  function Settings($localStorage, $log, $rootScope) {
+  function Settings($localStorage, $log, $rootScope, DEFAULTS) {
     var service = {
       save: save,
       load: load
     };
 
-    var defaults = {
-      stt: {
-        locale: 'en-US'
-      }
-    };
+    var defaults = DEFAULTS;
 
     var settings = load();
     if (!settings) {
