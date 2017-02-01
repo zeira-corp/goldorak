@@ -25,7 +25,7 @@
             return LocaleService.getAll();
           }],
           luisApplications: ['Luis', function (Luis) {
-            return Luis.getApplications().$promise;
+            return Luis.getApplications();
           }]
         }
       });

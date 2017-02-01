@@ -9,7 +9,8 @@
   function Settings($localStorage, $log, $rootScope, DEFAULTS) {
     var service = {
       save: save,
-      load: load
+      load: load,
+      reset: reset
     };
 
     var defaults = DEFAULTS;
@@ -27,6 +28,10 @@
 
     function load() {
       return $localStorage.settings;
+    }
+
+    function reset() {
+      save(DEFAULTS);
     }
 
     return service;

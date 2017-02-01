@@ -1,0 +1,11 @@
+{
+  "talk": {
+    "schedule": "Le talk <strong>{{ talk.name }}</strong> est programmé à <strong>{{ talk.start | amDateFormat:  'HH:mm' }}</strong>.",
+    "room": "Le talk <strong>{{ talk.name }}</strong> est programmé dans la salle <strong>{{ talk.room}}</strong>.",
+    "speakers": "Le talk <strong>{{ talk.name }}</strong> est présenté par :<br/> <strong>{{ talk.speakers.join('<br/>') }}</strong>.",
+    "error": {
+    "no-talk-identified": "Je n'ai pas identifié de talk dans la phrase :<blockquote class=\"blockquote\"><p class=\"mb-0\">{{ expression }}</p></blockquote>"
+  },
+    "none": "Je ne sais pas quoi faire avec l'expression <blockquote class=\"blockquote\"><p class=\"mb-0\">{{ expression }}</p></blockquote>"
+  }
+}

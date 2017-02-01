@@ -19,12 +19,18 @@
       service: 'Luis'
     }];
     vm.save = save;
+    vm.reset = reset;
     vm.settings = Settings.load();
     vm.locales = locales;
     vm.luisApplciations = luisApplications;
 
     function save() {
       Settings.save(vm.settings);
+      $state.go('home');
+    }
+
+    function reset() {
+      Settings.reset();
       $state.go('home');
     }
   }

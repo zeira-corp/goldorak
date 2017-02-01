@@ -47,22 +47,26 @@
       });
 
       Bot.converse(request).then(function (response) {
+//        $log.info('Info ' + angular.toJson(response));
         vm.messages.push({
           user: "goldorak",
           timestamp: new Date().getTime(),
-          content: response
+          content: response.reply,
+          values: response.data
         });
       }).catch(function (error) {
+//        $log.error('Error ' + angular.toJson(error));
         vm.messages.push({
           user: "goldorak",
           timestamp: new Date().getTime(),
-          content: error
+          content: error.reply,
+          values: error.data
         });
       });
     }
 
     function handleError(error) {
-      $log.error(error);
+//      $log.error('Error ' + angular.toJson(error));
       vm.messages.push({
         user: "goldorak",
         timestamp: new Date().getTime(),
@@ -76,15 +80,5 @@
       }
       vm.text = "";
     }
-
-    // var botListened = $rootScope.$on('bot::listened', function (event, data) {
-    //   process(data.text);
-    // });
-    //
-    // $rootScope.$on('$destroy', function () {
-    //   if (angular.isDefined(botListened) && botListened !== null) {
-    //     botListened();
-    //   }
-    // });
   }
 })();

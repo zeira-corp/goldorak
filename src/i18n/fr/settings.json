@@ -20,6 +20,7 @@
       "application": "Application",
       "subscriptionKey": "Clé de souscription"
     },
-    "save": "Sauvegarder"
+    "save": "Sauvegarder",
+    "reset": "Reinitialiser"
   }
 }

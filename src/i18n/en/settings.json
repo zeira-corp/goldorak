@@ -20,6 +20,7 @@
       "application": "Application",
       "subscriptionKey": "Subscription Key"
     },
-    "save": "Save"
+    "save": "Save",
+    "reset": "Reset"
   }
 }

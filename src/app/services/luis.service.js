@@ -1,4 +1,4 @@
-(function () {
+(function() {
   'use strict';
   angular
     .module('app')
@@ -41,26 +41,22 @@
       }
 
       function getApplications() {
-        // if (!$subscriptionKey) {
-        //   throw new Error('You must set the subscriptionKey first');
-        // }
-        // return $http.get($luisApiUrl, {
-        //   headers: {
-        //     'Ocp-Apim-Subscription-Key': $subscriptionKey
-        //   }
-        // }).then(function (response) {
-        //   var data = response.data;
-        //   return data.map(function (application) {
-        //     return {
-        //       name: application.Name,
-        //       appId: application.ID
-        //     };
-        //   });
-        // });
-        return [{
-          name: "Conference",
-          appId: "496aaf6a-10e6-48fa-8b17-15658ddabde2"
-        }];
+        if (!$subscriptionKey) {
+          throw new Error('You must set the subscriptionKey first');
+        }
+        return $http.get($luisApiUrl, {
+          headers: {
+            'Ocp-Apim-Subscription-Key': $subscriptionKey
+          }
+        }).then(function (response) {
+          var data = response.data;
+          return data.map(function (application) {
+            return {
+              name: application.Name,
+              appId: application.ID
+            };
+          });
+        });
       }
 
       function predict(utterance) {
@@ -93,14 +89,33 @@
         throw new Error("Natural Language Understanding failed");
       }
 
+      function descOrder(a, b) {
+        return a - b;
+      }
+
       function getIntent(intentResponse) {
-        var intent = {
+        var intent = intentResponse.IntentsResults.sort(descOrder)[0].Name;
+        var expression = intentResponse.utteranceText;
+        var entities = intentResponse.EntitiesResults.map(function (entity) {
+          return {
+            name: entity.name,
+            word: entity.word,
+            indeces: {
+              start: entity.indeces.startToken,
+              end: entity.indeces.endToken
+            }
+          };
+        });
+
+        var response = {
           application: $application,
-          intent: intentResponse.IntentsResults[0].Name,
-          entities: intentResponse.EntitiesResults
+          expression: expression,
+          intent: intent,
+          entities: entities
         };
-        $rootScope.$emit('luis:getIntent', intent);
-        return intent;
+
+        $rootScope.$emit('luis:getIntent', response);
+        return response;
       }
 
       return service;
