@@ -1,13 +1,13 @@
-(function () {
+(function() {
   'use strict';
 
   angular
     .module('app')
     .factory('settingssHandler', settingssHandler);
 
-  settingssHandler.$inject = ['$rootScope', 'Settings', 'Bot', 'Hears', 'Brain', 'Mouth', 'LanguageService', 'Luis', 'BingSpeech'];
+  settingssHandler.$inject = ['$rootScope', 'Settings', 'Bot', 'Hears', 'Brain', 'Mouth', 'LanguageService', 'Luis', 'BingSpeech', 'DEFAULTS'];
 
-  function settingssHandler($rootScope, Settings, Bot, Hears, Brain, Mouth, LanguageService, Luis, BingSpeech) {
+  function settingssHandler($rootScope, Settings, Bot, Hears, Brain, Mouth, LanguageService, Luis, BingSpeech, DEFAULTS) {
     return {
       initialize: initialize
     };
@@ -27,17 +27,17 @@
     }
 
     function update(settings) {
-      Bot.useName(settings.general.name);
-      LanguageService.changeLanguage(settings.general.language);
-      Hears.useLocale(settings.stt.locale);
-      Hears.useSpeechToText(settings.stt.service);
-      Mouth.useLocale(settings.tts.locale);
-      Mouth.useGender(settings.tts.gender);
-      Mouth.useTextToSpeech(settings.tts.service);
-      Brain.useNaturalLanguageProcessor(settings.nlp.service);
-      Luis.useSubscriptionKey(settings.Luis.subscriptionKey);
-      Luis.useApplication(settings.Luis.application);
-      BingSpeech.useSubscriptionKey(settings.BingSpeech.subscriptionKey);
+      Bot.useName(settings.general.name || DEFAULTS.general.name);
+      LanguageService.changeLanguage(settings.general.language || DEFAULTS.general.language);
+      Hears.useLocale(settings.stt.locale || DEFAULTS.stt.locale);
+      Hears.useSpeechToText(settings.stt.service || DEFAULTS.stt.service);
+      Mouth.useLocale(settings.tts.locale || DEFAULTS.tts.locale);
+      Mouth.useGender(settings.tts.gender || DEFAULTS.tss.gender);
+      Mouth.useTextToSpeech(settings.tts.service || DEFAULTS.tts.service);
+      Brain.useNaturalLanguageProcessor(settings.nlp.service || DEFAULTS.nlp.service);
+      Luis.useSubscriptionKey(settings.Luis.subscriptionKey || DEFAULTS.Luis.subscriptionKey);
+      Luis.useApplication(settings.Luis.application || DEFAULTS.Luis.application);
+      BingSpeech.useSubscriptionKey(settings.BingSpeech.subscriptionKey || DEFAULTS.BingSpeech.subscriptionKey);
     }
   }
 })();
