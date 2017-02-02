@@ -27,23 +27,25 @@
     }
 
     function update(settings) {
-      var general = settings.general || DEFAULTS.general;
-      var stt = settings.stt || DEFAULTS.stt;
-      var tts = settings.tts || DEFAULTS.tts;
-      var nlp = settings.nlp || DEFAULTS.nlp;
-      var Luis = settings.Luis || DEFAULTS.Luis;
-      var BingSpeech = settings.BingSpeech || DEFAULTS.BingSpeech;
-      Bot.useName(general.name);
-      LanguageService.changeLanguage(general.language);
-      Hears.useLocale(stt.locale);
-      Hears.useSpeechToText(stt.service);
-      Mouth.useLocale(tts.locale);
-      Mouth.useGender(tts.gender);
-      Mouth.useTextToSpeech(tts.service);
-      Brain.useNaturalLanguageProcessor(nlp.service);
-      Luis.useSubscriptionKey(Luis.subscriptionKey);
-      Luis.useApplication(Luis.application);
-      BingSpeech.useSubscriptionKey(BingSpeech.subscriptionKey);
+      var config = {
+        general: settings.general || DEFAULTS.general,
+        stt: settings.stt || DEFAULTS.stt,
+        tts: settings.tts || DEFAULTS.tts,
+        nlp: settings.nlp || DEFAULTS.nlp,
+        Luis: settings.Luis || DEFAULTS.Luis,
+        BingSpeech: settings.BingSpeech || DEFAULTS.BingSpeech
+      };
+      Bot.useName(config.general.name);
+      LanguageService.changeLanguage(config.general.language);
+      Hears.useLocale(config.stt.locale);
+      Hears.useSpeechToText(config.stt.service);
+      Mouth.useLocale(config.tts.locale);
+      Mouth.useGender(config.tts.gender);
+      Mouth.useTextToSpeech(config.tts.service);
+      Brain.useNaturalLanguageProcessor(config.nlp.service);
+      Luis.useSubscriptionKey(config.Luis.subscriptionKey);
+      Luis.useApplication(config.Luis.application);
+      BingSpeech.useSubscriptionKey(config.BingSpeech.subscriptionKey);
     }
   }
 })();
