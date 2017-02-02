@@ -1,17 +1,18 @@
- (function () {
+ (function() {
    'use strict';
    angular
      .module('app')
      .factory('Bot', Bot);
 
-   Bot.$inject = ['$rootScope', 'Hears', 'Brain', 'Replies'];
+   Bot.$inject = ['$rootScope', 'Hears', 'Brain', 'Replies', 'Mouth'];
 
-   function Bot($rootScope, Hears, Brain, Replies) {
+   function Bot($rootScope, Hears, Brain, Replies, Mouth) {
      var service = {
        startListening: startListening,
        isListening: isListening,
        stopListening: stopListening,
-       converse: converse
+       converse: converse,
+       speak: speak
      };
 
      function startListening() {
@@ -23,7 +24,7 @@
      }
 
      function stopListening() {
-       return Hears.stopListening().then(function (utterance) {
+       return Hears.stopListening().then(function(utterance) {
          $rootScope.$emit('bot:listened', utterance);
          return utterance;
        });
@@ -39,6 +40,10 @@
 
      function converse(expression) {
        return getIntent(expression).then(reply);
+     }
+
+     function speak(text) {
+       return Mouth.synthesize(text);
      }
 
      return service;

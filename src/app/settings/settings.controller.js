@@ -14,10 +14,15 @@
       name: 'Microsoft BingSpeech',
       service: 'BingSpeech'
     }];
+    vm.ttsEngines = [{
+      name: 'Microsoft BingSpeech',
+      service: 'BingSpeech'
+    }];
     vm.nlpEngines = [{
       name: 'Microsoft Luis',
       service: 'Luis'
     }];
+    vm.genders = ['female', 'male'];
     vm.save = save;
     vm.reset = reset;
     vm.settings = Settings.load();

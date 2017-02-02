@@ -10,6 +10,7 @@
 						<span class="card-title"><strong class="capitalize">{{message.user}}</strong></span>
 						<span class="card-subtitle"><small class="ml-1 text-muted">{{message.timestamp | amDateFormat: 'HH:mm'}}</small></span>
 						<p class="card-text" translate="{{message.content}}" translate-values="{{message.values}}"></p>
+						<audio ng-show="message.user != 'me'" src="{{message.audio}}" autoplay></audio>
 					</div>
 				</div>
 			</div>

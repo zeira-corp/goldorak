@@ -20,6 +20,8 @@
             $translatePartialLoader.addPart('talk');
             $translatePartialLoader.addPart('home');
             $translatePartialLoader.addPart('global');
+            $translatePartialLoader.addPart('speech/home');
+            $translatePartialLoader.addPart('speech/talk');
             return $translate.refresh();
           }]
         }

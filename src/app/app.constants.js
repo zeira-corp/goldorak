@@ -11,6 +11,12 @@
         service: 'BingSpeech',
         locale: 'fr-FR'
       },
+      tts: {
+        name: 'Microsoft BingSpeech',
+        service: 'BingSpeech',
+        locale: 'fr-FR',
+        gender: 'male'
+      },
       nlp: {
         name: 'Microsoft Luis',
         service: 'Luis'
