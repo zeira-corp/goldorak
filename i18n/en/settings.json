@@ -2,12 +2,16 @@
   "settings": {
     "general": {
       "title": "General",
-      "language": "Language"
+      "language": "Language",
+      "engine": "Engine",
+      "locale": "Locale",
     },
     "stt": {
       "title": "Speech To Text",
-      "engine": "Engine",
-      "locale": "Locale"
+    },
+    "tts": {
+      "title": "Text To Speech",
+      "gender": "Gender"
     },
     "nlp": {
       "title": "Natural Language Processor",

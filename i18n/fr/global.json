@@ -2,6 +2,10 @@
   "global": {
     "brand": {
       "subtitle": "Je t'écoute..."
+    },
+    "gender": {
+      "male": "Homme",
+      "female": "Femme"
     }
   }
 }

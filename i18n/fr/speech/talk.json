@@ -1,0 +1,13 @@
+{
+  "speech": {
+    "talk": {
+      "schedule": "Voilà ce que j'ai trouvé.",
+      "room": "Voilà ce que j'ai trouvé.",
+      "speakers": "Voilà ce que j'ai trouvé.",
+      "error": {
+        "no-talk-identified": "Je n'ai pas trouvé de talk."
+      },
+      "none": "Je ne sais pas quoi faire."
+    }
+  }
+}

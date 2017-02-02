@@ -1,13 +1,17 @@
 {
   "settings": {
+    "engine": "Moteur",
+    "locale": "Locale",
     "general": {
       "title": "General",
       "language": "Langue"
     },
     "stt": {
-      "title": "Reconnaisse vocale",
-      "engine": "Moteur",
-      "locale": "Locale"
+      "title": "Reconnaisse vocale"
+    },
+    "tts": {
+      "title": "Synthèse vocale",
+      "gender": "Genre"
     },
     "nlp": {
       "title": "Analyse de texte naturel",
