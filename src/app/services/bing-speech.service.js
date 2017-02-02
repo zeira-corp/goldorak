@@ -105,7 +105,7 @@
           .replace(/%GENDER%/gi, gender)
           .replace(/%FONT%/gi, font)
           .replace(/%TEXT%/gi, text);
-        return getToken($subscriptionKey).then(function (token) {
+        return getToken($subscriptionKey).then(function(token) {
           return $http.post($BingSpeechApiUrl + '/synthesize', ssml, {
             responseType: 'arraybuffer',
             headers: {

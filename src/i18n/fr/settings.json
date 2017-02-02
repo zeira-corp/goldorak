@@ -4,7 +4,8 @@
     "locale": "Locale",
     "general": {
       "title": "General",
-      "language": "Langue"
+      "language": "Langue",
+      "name": "Nom du robot"
     },
     "stt": {
       "title": "Reconnaisse vocale"

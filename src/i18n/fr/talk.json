@@ -1,6 +1,6 @@
 {
   "talk": {
-    "schedule": "Le talk <strong>{{ talk.name }}</strong> est programmé à <strong>{{ talk.start | amDateFormat:  'HH:mm' }}</strong>.",
+    "schedule": "Le talk <strong>{{ talk.name }}</strong> commence à <strong>{{ talk.start | amDateFormat:  'HH:mm' }}</strong>.",
     "room": "Le talk <strong>{{ talk.name }}</strong> est programmé dans la salle <strong>{{ talk.room}}</strong>.",
     "speakers": "Le talk <strong>{{ talk.name }}</strong> est présenté par :<br/> <strong>{{ talk.speakers.join('<br/>') }}</strong>.",
     "error": {

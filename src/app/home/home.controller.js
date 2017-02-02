@@ -5,9 +5,9 @@
     .module('app')
     .controller('HomeController', HomeController);
 
-  HomeController.$inject = ['$rootScope', '$scope', '$log', '$translate', 'hotkeys', 'Bot'];
+  HomeController.$inject = ['$rootScope', '$scope', '$log', '$translate', '$q', 'hotkeys', 'Bot'];
 
-  function HomeController($rootScope, $scope, $log, $translate, hotkeys, Bot) {
+  function HomeController($rootScope, $scope, $log, $translate, $q, hotkeys, Bot) {
     var vm = this;
 
     vm.toggleRecording = toggleRecording;
@@ -24,63 +24,76 @@
     welcomeMessage();
 
     function welcomeMessage() {
-      buildMessage('goldorak', 'home.welcome', {});
+      addBotMessage('home.welcome', {
+        name: Bot.name()
+      });
     }
 
-    function buildMessage(user, message, values) {
-      $translate("speech." + message).then(function(text) {
-        Bot.speak(text).then(function(audio) {
-          var blob = new Blob([audio.data], {
-            type: "audio/basic"
-          });
-          var tts = URL.createObjectURL(blob);
+    function addBotMessage(message, values) {
+      getBotTranslated(message, values)
+        .then(getBotAudioUrl)
+        .then(function (audioUrl) {
           vm.messages.push({
-            user: user,
+            user: Bot.name(),
             timestamp: new Date().getTime(),
             content: message,
             values: values,
-            audio: tts
+            audio: audioUrl,
+            image: 'bot'
           });
         });
+    }
+
+    function addUserMessage(message) {
+      vm.messages.push({
+        user: "me",
+        timestamp: new Date().getTime(),
+        content: message,
+        image: 'me'
       });
     }
 
     function toggleRecording() {
       if (Bot.isListening()) {
-        Bot.stopListening().then(process).catch(handleError);
+        Bot.stopListening().then(process).catch(handleRecordingError);
       } else {
         Bot.startListening();
       }
     }
 
     function process(request) {
-      vm.messages.push({
-        user: "me",
-        timestamp: new Date().getTime(),
-        content: request
-      });
+      addUserMessage(request);
 
-      Bot.converse(request).then(function(response) {
-        //        $log.info('Info ' + angular.toJson(response));
-        buildMessage("goldorak", response.reply, response.data);
-      }).catch(function(error) {
-        //        $log.error('Error ' + angular.toJson(error));
-        vm.messages.push({
-          user: "goldorak",
-          timestamp: new Date().getTime(),
-          content: error.reply,
-          values: error.data
-        });
-      });
+      Bot.converse(request)
+        .then(handleBotResponse)
+        .catch(handleConversationError);
     }
 
-    function handleError(error) {
-      //      $log.error('Error ' + angular.toJson(error));
-      vm.messages.push({
-        user: "goldorak",
-        timestamp: new Date().getTime(),
-        content: 'home.stt.failed'
+    function getBotTranslated(message, values) {
+      return $translate("speech." + message, values);
+    }
+
+    function getBotAudioUrl(text) {
+      var deferred = $q.defer();
+      Bot.speak(text).then(function(audio) {
+        var blob = new Blob([audio.data], {
+          type: "audio/basic"
+        });
+        deferred.resolve(URL.createObjectURL(blob));
       });
+      return deferred.promise;
+    }
+
+    function handleBotResponse(response) {
+      addBotMessage(response.reply, response.data);
+    }
+
+    function handleRecordingError(error) {
+      addBotMessage('home.stt.failed', {});
+    }
+
+    function handleConversationError(error) {
+      addBotMessage(error.reply, error.data);
     }
 
     function submit() {

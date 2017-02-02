@@ -5,9 +5,9 @@
     .module('app')
     .factory('settingssHandler', settingssHandler);
 
-  settingssHandler.$inject = ['$rootScope', 'Settings', 'Hears', 'Brain', 'Mouth', 'LanguageService', 'Luis', 'BingSpeech'];
+  settingssHandler.$inject = ['$rootScope', 'Settings', 'Bot', 'Hears', 'Brain', 'Mouth', 'LanguageService', 'Luis', 'BingSpeech'];
 
-  function settingssHandler($rootScope, Settings, Hears, Brain, Mouth, LanguageService, Luis, BingSpeech) {
+  function settingssHandler($rootScope, Settings, Bot, Hears, Brain, Mouth, LanguageService, Luis, BingSpeech) {
     return {
       initialize: initialize
     };
@@ -27,6 +27,7 @@
     }
 
     function update(settings) {
+      Bot.useName(settings.general.name);
       LanguageService.changeLanguage(settings.general.language);
       Hears.useLocale(settings.stt.locale);
       Hears.useSpeechToText(settings.stt.service);

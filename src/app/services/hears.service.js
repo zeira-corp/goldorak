@@ -13,12 +13,14 @@
       isListening: Microphone.isRecording,
       stopListening: stopListening,
       locale: locale,
+      audio: audio,
       useLocale: useLocale,
       useSpeechToText: useSpeechToText
     };
 
     var $locale;
     var $stt;
+    var $audio;
 
     function useLocale(locale) {
       $locale = locale;
@@ -32,6 +34,10 @@
 
     function locale() {
       return $locale;
+    }
+
+    function audio() {
+      return $audio;
     }
 
     function getSTTInstance() {
@@ -60,6 +66,7 @@
     }
 
     function recognize(audio) {
+      $audio = audio;
       var SpeechToText = getSTTInstance();
       $rootScope.$emit('hears:onRecognize', {
         sst: $stt,

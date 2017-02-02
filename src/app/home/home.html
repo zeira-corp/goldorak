@@ -2,7 +2,7 @@
 	<div class="container content mt-3" scroll-glue>
 		<div class="row mb-2" ng-repeat="message in vm.messages">
 			<div class="col-3 col-sm-1">
-				<img class="rounded img-fluid" ng-src="content/images/{{message.user}}.png">
+				<img class="rounded img-fluid" ng-src="content/images/{{message.image}}.png">
 			</div>
 			<div class="col">
 				<div class="card" ng-class="message.user == 'me' ? 'card-outline-warning' : 'card-outline-info'">

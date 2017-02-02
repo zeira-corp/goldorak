@@ -4,7 +4,8 @@
     .module('app')
     .constant('DEFAULTS', {
       general: {
-        language: 'fr'
+        language: 'fr',
+        name: 'Goldorak'
       },
       stt: {
         name: 'Microsoft BingSpeech',
