@@ -1,4 +1,4 @@
-(function() {
+(function () {
   'use strict';
 
   angular
@@ -27,17 +27,23 @@
     }
 
     function update(settings) {
-      Bot.useName(settings.general.name || DEFAULTS.general.name);
-      LanguageService.changeLanguage(settings.general.language || DEFAULTS.general.language);
-      Hears.useLocale(settings.stt.locale || DEFAULTS.stt.locale);
-      Hears.useSpeechToText(settings.stt.service || DEFAULTS.stt.service);
-      Mouth.useLocale(settings.tts.locale || DEFAULTS.tts.locale);
-      Mouth.useGender(settings.tts.gender || DEFAULTS.tss.gender);
-      Mouth.useTextToSpeech(settings.tts.service || DEFAULTS.tts.service);
-      Brain.useNaturalLanguageProcessor(settings.nlp.service || DEFAULTS.nlp.service);
-      Luis.useSubscriptionKey(settings.Luis.subscriptionKey || DEFAULTS.Luis.subscriptionKey);
-      Luis.useApplication(settings.Luis.application || DEFAULTS.Luis.application);
-      BingSpeech.useSubscriptionKey(settings.BingSpeech.subscriptionKey || DEFAULTS.BingSpeech.subscriptionKey);
+      var general = settings.general || DEFAULTS.general;
+      var stt = settings.stt || DEFAULTS.stt;
+      var tts = settings.tts || DEFAULTS.tts;
+      var nlp = settings.nlp || DEFAULTS.nlp;
+      var Luis = settings.Luis || DEFAULTS.Luis;
+      var BingSpeech = settings.BingSpeech || DEFAULTS.BingSpeech;
+      Bot.useName(general.name);
+      LanguageService.changeLanguage(general.language);
+      Hears.useLocale(stt.locale);
+      Hears.useSpeechToText(stt.service);
+      Mouth.useLocale(tts.locale);
+      Mouth.useGender(tts.gender);
+      Mouth.useTextToSpeech(tts.service);
+      Brain.useNaturalLanguageProcessor(nlp.service);
+      Luis.useSubscriptionKey(Luis.subscriptionKey);
+      Luis.useApplication(Luis.application);
+      BingSpeech.useSubscriptionKey(BingSpeech.subscriptionKey);
     }
   }
 })();
