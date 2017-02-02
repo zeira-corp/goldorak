@@ -7,7 +7,7 @@
       "error": {
         "no-talk-identified": "Je n'ai pas trouvé de talk."
       },
-      "none": "Je ne sais pas quoi faire avc {{ expression }}"
+      "none": "Je ne sais pas quoi faire avec l'expression {{ expression }}"
     }
   }
 }
