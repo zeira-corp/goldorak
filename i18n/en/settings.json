@@ -5,6 +5,7 @@
       "language": "Language",
       "engine": "Engine",
       "locale": "Locale",
+      "name": "Bot's Name"
     },
     "stt": {
       "title": "Speech To Text",

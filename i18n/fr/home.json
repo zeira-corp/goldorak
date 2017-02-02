@@ -8,6 +8,6 @@
       "failed": "Pardon, je ne suis pas sur de comprendre. Peux-tu répeter, stp."
     },
     "hotkey": "Démarrer/Arreter l'enregistrement de la voix",
-    "welcome": "<h4>Salut, je suis Goldorak! 🤖.</h4> <span class=\"text-muted\"><i>Clique sur <i class=\"fa fa-cog\"></i> pour changer de langue.</span>"
+    "welcome": "<h4>Salut, je suis {{ name }}! 🤖.</h4> <span class=\"text-muted\"><i>Clique sur <i class=\"fa fa-cog\"></i> pour changer de langue.</span>"
   }
 }
