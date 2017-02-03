@@ -28,8 +28,8 @@
       Luis: {
         subscriptionKey: "ebc99ea1bfe8481d9c01f8145a553187",
         application: {
-          name: "Conference",
-          appId: "496aaf6a-10e6-48fa-8b17-15658ddabde2"
+          name: "snowcamp 2017",
+          appId: "56760a0c-fca1-43bc-b4d2-a864b4c04ced"
         }
       }
     });

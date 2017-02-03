@@ -90,7 +90,7 @@
       }
 
       function descOrder(a, b) {
-        return a - b;
+        return b.score - a.score;
       }
 
       function getIntent(intentResponse) {
