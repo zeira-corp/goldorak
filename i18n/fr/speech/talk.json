@@ -1,12 +1,7 @@
 {
   "speech": {
     "talk": {
-      "schedule": "Le talk {{ talk.name }} commence à {{ talk.start | amDateFormat:  'HH:mm' }}",
-      "room": "Voilà ce que j'ai trouvé.",
-      "speakers": "Voilà ce que j'ai trouvé.",
-      "error": {
-        "no-talk-identified": "Je n'ai pas trouvé de talk."
-      },
+      "greetings": "Bonjour",
       "none": "Je ne sais pas quoi faire avec l'expression {{ expression }}"
     }
   }
