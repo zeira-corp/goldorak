@@ -1,7 +1,7 @@
 {
   "talk": {
     "greetings": "Bonjour, je suis Hubot ! Je travaille chez GitHub. Je vais co-présenter cette conférence avec Phillipe et Daniel. Je suis un peu impressionné car je parle dans une conférence pour la première fois.",
-    "getSlides": "Voilà la présentation: <br/> <a href=\"https://docs.google.com/presentation/d/1IE6EZFVbN4AHTGj82-j7TpdKKkc9jMRs4iULlNkDWRQ/edit?usp=sharing\">Hey Hubot, how are you doing</a>",
+    "GetSlides": "Voilà la présentation: <br/> <a href=\"https://docs.google.com/presentation/d/1IE6EZFVbN4AHTGj82-j7TpdKKkc9jMRs4iULlNkDWRQ/edit?usp=sharing\">Hey Hubot, how are you doing</a>",
     "none": "Je ne sais pas quoi faire avec l'expression <blockquote class=\"blockquote\"><p class=\"mb-0\">{{ expression }}</p></blockquote>"
   }
 }
