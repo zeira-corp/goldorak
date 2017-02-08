@@ -1,0 +1,53 @@
+{
+  "luis_schema_version": "1.3.0",
+  "name": "snowcamp 2017",
+  "desc": "",
+  "culture": "fr-fr",
+  "intents": [
+    {
+      "name": "Greetings"
+    },
+    {
+      "name": "None"
+    }
+  ],
+  "entities": [],
+  "composites": [],
+  "closedLists": [],
+  "bing_entities": [],
+  "actions": [],
+  "model_features": [],
+  "regex_features": [],
+  "utterances": [
+    {
+      "text": "yo",
+      "intent": "Greetings",
+      "entities": []
+    },
+    {
+      "text": "bonjour",
+      "intent": "Greetings",
+      "entities": []
+    },
+    {
+      "text": "salut",
+      "intent": "Greetings",
+      "entities": []
+    },
+    {
+      "text": "comment vas tu",
+      "intent": "Greetings",
+      "entities": []
+    },
+    {
+      "text": "hello",
+      "intent": "Greetings",
+      "entities": []
+    },
+    {
+      "text": "ca va",
+      "intent": "Greetings",
+      "entities": []
+    }
+  ]
+}

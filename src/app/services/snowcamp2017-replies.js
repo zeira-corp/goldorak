@@ -13,8 +13,12 @@
     };
 
     function reply(request) {
+      $log.debug(request);
       if (request.intent === 'Greetings') {
         return answer(request, 'talk.greetings', {});
+      }
+      if (request.intent === 'GetSlides') {
+        return answer(request, 'talk.GetSlides', {});
       }
       return answer(request, 'talk.none', {expression: request.expression});
     }

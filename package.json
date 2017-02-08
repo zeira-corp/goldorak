@@ -64,10 +64,7 @@
     "env": {
       "browser": true,
       "jasmine": true
-    },
-    "extends": [
-      "xo-space"
-    ]
+    }
   },
   "dependencies": {
     "eslint-config-angular": "^0.5.0"

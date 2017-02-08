@@ -21,7 +21,7 @@
       callback: vm.toggleRecording
     });
 
-    welcomeMessage();
+    //welcomeMessage();
 
     function welcomeMessage() {
       addBotMessage('home.welcome', {

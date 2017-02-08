@@ -1,7 +1,7 @@
 {
   "speech": {
     "home": {
-      "welcome": "Salut, je suis {{ name }} !",
+      "welcome": "Salut, je suis Hubotte !",
       "stt": {
         "failed": "Pardon, je ne suis pas sur de comprendre. Peux-tu répeter."
       }
