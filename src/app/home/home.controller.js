@@ -30,6 +30,7 @@
     }
 
     function addBotMessage(message, values) {
+      $log.debug('message: ' + message);
       getBotTranslated(message, values)
         .then(getBotAudioUrl)
         .then(function (audioUrl) {

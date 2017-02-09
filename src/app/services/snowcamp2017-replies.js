@@ -13,7 +13,7 @@
     };
 
     function reply(request) {
-      $log.debug(request);
+//      $log.debug(request);
       if (request.intent === 'Greetings') {
         return answer(request, 'talk.greetings', {});
       }
