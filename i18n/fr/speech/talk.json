@@ -1,7 +1,7 @@
 {
   "speech": {
     "talk": {
-      "greetings": "Bonjour, je suis Hubotte ! Je travaille chez GuiTeube. Je vais co-présenter cette conférence avec Phillipe et Daniel. Je suis un peu impressionné car je parle dans une conférence pour la première fois.",
+      "greetings": "Bonjour, je suis Hubotte ! Je travaille chez GuiTeube. Je vais co-présenter cette conférence avec Phillipe et Daniel. Merci d'être venu si nombreux à ma première présentation.",
       "GetSlides": "Voilà la présentation.",
       "none": "Je ne sais pas quoi faire avec l'expression {{ expression }}"
     }
